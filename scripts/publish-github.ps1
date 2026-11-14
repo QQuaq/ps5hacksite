@@ -19,7 +19,8 @@ if ($dirty) {
   git -c user.name="Alpayxxd" -c user.email="Alpayxxd@users.noreply.github.com" commit -m "Pages: docs yenile"
 }
 
-$remote = git remote get-url origin 2>$null
+$remote = ''
+try { $remote = git remote get-url origin 2>$null } catch { $remote = '' }
 if (-not $remote) {
   & $gh repo create $Name --public --source=. --remote=origin --push
 } else {
