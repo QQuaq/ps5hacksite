@@ -54,12 +54,10 @@ copyDir(src, out);
   if (fs.existsSync(filePath)) bakeHtml(filePath);
 });
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
-if (!fs.existsSync(path.join(out, '404.html'))) {
-  fs.writeFileSync(
-    path.join(out, '404.html'),
-    fs.readFileSync(path.join(out, 'index.html'), 'utf8')
-  );
-}
+fs.writeFileSync(
+  path.join(out, '404.html'),
+  fs.readFileSync(path.join(out, 'index.html'), 'utf8')
+);
 
 console.log('GitHub Pages hazir: docs/');
 console.log('Repoda Settings > Pages > Branch: main, Folder: /docs');
