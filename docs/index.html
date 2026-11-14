@@ -35,19 +35,19 @@
           </div>
           <div>
             <dt>Birincil DNS</dt>
-            <dd>{{IP}}</dd>
+            <dd>—</dd>
           </div>
           <div>
             <dt>Site kökü</dt>
-            <dd>{{ORIGIN}}</dd>
+            <dd>https://qquaq.github.io/ps5hacksite/</dd>
           </div>
           <div>
             <dt>HTTP portu</dt>
-            <dd>{{HTTP_PORT}}</dd>
+            <dd>443</dd>
           </div>
           <div>
             <dt>Kılavuz adı</dt>
-            <dd>{{HIJACK}}</dd>
+            <dd>manuals.playstation.net</dd>
           </div>
         </dl>
       </section>
@@ -58,22 +58,22 @@
         <dl class="facts">
           <div>
             <dt>Birincil DNS</dt>
-            <dd>{{IP}}</dd>
+            <dd>—</dd>
           </div>
           <div>
             <dt>İkincil DNS</dt>
-            <dd>{{UPSTREAM}}</dd>
+            <dd>1.1.1.1</dd>
           </div>
           <div>
             <dt>Tarayıcı adresi</dt>
-            <dd>{{ORIGIN}}</dd>
+            <dd>https://qquaq.github.io/ps5hacksite/</dd>
           </div>
           <div>
             <dt>Yönlenen alan adı</dt>
-            <dd>{{HIJACK}}</dd>
+            <dd>manuals.playstation.net</dd>
           </div>
         </dl>
-        <p class="note">Sadece kılavuz adı bu makineye gelir. Diğer istekler {{UPSTREAM}} üzerinden çözülür; internet normal kalır.</p>
+        <p class="note">Sadece kılavuz adı bu makineye gelir. Diğer istekler 1.1.1.1 üzerinden çözülür; internet normal kalır.</p>
       </section>
 
       <section id="rehber" class="view">
@@ -83,11 +83,11 @@
           <li>Bilgisayarda <strong>start.bat</strong> dosyasını yönetici olarak çalıştır.</li>
           <li>PS5: Ayarlar → Ağ → İnternet Bağlantısını Kur → Gelişmiş Ayarlar.</li>
           <li>IP adresi: Otomatik. DHCP ana bilgisayar adı: Ayarlama.</li>
-          <li>DNS: Manuel. Birincil: {{IP}}. İkincil: {{UPSTREAM}}.</li>
+          <li>DNS: Manuel. Birincil: —. İkincil: 1.1.1.1.</li>
           <li>MTU: Otomatik. Proxy: Kullanma. Bağlantıyı test et.</li>
-          <li>Kullanım Kılavuzu’nu aç veya tarayıcıya <strong>{{ORIGIN}}</strong> yaz.</li>
+          <li>Kullanım Kılavuzu’nu aç veya tarayıcıya <strong>https://qquaq.github.io/ps5hacksite/</strong> yaz.</li>
         </ol>
-        <p class="note">HTTPS kilidi yüzünden kılavuz bazen açılmaz. O zaman doğrudan {{ORIGIN}} adresini kullan.</p>
+        <p class="note">HTTPS kilidi yüzünden kılavuz bazen açılmaz. O zaman doğrudan https://qquaq.github.io/ps5hacksite/ adresini kullan.</p>
       </section>
 
       <section id="giris" class="view home">
@@ -104,7 +104,7 @@
           <a class="card" href="#ag">
             <span class="idx">02</span>
             <span class="card-title">Ağ</span>
-            <span class="card-copy">DNS {{IP}}</span>
+            <span class="card-copy">DNS —</span>
           </a>
           <a class="card" href="#rehber">
             <span class="idx">03</span>
@@ -117,7 +117,7 @@
     </main>
 
     <footer class="foot">
-      <p class="mono">{{IP}}{{PORT_NOTE}}</p>
+      <p class="mono">—</p>
       <a href="panel.html">Bilgisayar paneli</a>
     </footer>
   </div>

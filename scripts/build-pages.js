@@ -28,13 +28,38 @@ function copyDir(from, to) {
   });
 }
 
+const pagesBase = (process.env.PAGES_BASE || 'https://qquaq.github.io/ps5hacksite/').replace(/\/?$/, '/');
+const baked = {
+  IP: '—',
+  ORIGIN: pagesBase,
+  HTTP_PORT: '443',
+  DNS_PORT: 'statik',
+  HIJACK: 'manuals.playstation.net',
+  UPSTREAM: '1.1.1.1',
+  PORT_NOTE: ''
+};
+
+function bakeHtml(filePath) {
+  let html = fs.readFileSync(filePath, 'utf8');
+  Object.keys(baked).forEach((key) => {
+    html = html.split('{{' + key + '}}').join(baked[key]);
+  });
+  fs.writeFileSync(filePath, html);
+}
+
 rm(out);
 copyDir(src, out);
+['index.html', 'panel.html', '404.html'].forEach((name) => {
+  const filePath = path.join(out, name);
+  if (fs.existsSync(filePath)) bakeHtml(filePath);
+});
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
-fs.writeFileSync(
-  path.join(out, '404.html'),
-  fs.readFileSync(path.join(out, 'index.html'), 'utf8')
-);
+if (!fs.existsSync(path.join(out, '404.html'))) {
+  fs.writeFileSync(
+    path.join(out, '404.html'),
+    fs.readFileSync(path.join(out, 'index.html'), 'utf8')
+  );
+}
 
 console.log('GitHub Pages hazir: docs/');
 console.log('Repoda Settings > Pages > Branch: main, Folder: /docs');
