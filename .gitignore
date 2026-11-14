@@ -1,0 +1,2 @@
+node_modules/
+# docs/ GitHub Pages için commit edilir; yeniden üret: npm run pages

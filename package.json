@@ -1,0 +1,11 @@
+{
+  "name": "orbit-ps5",
+  "private": true,
+  "version": "1.0.0",
+  "description": "DNS girilince PS5 ekraninda acilan yerel site",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js --dev",
+    "pages": "node scripts/build-pages.js"
+  }
+}

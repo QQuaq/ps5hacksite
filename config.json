@@ -1,0 +1,7 @@
+{
+  "upstream": "1.1.1.1",
+  "ip": "",
+  "hijack": [
+    "manuals.playstation.net"
+  ]
+}
