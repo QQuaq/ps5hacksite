@@ -111,7 +111,9 @@ function escapeHtml(value) {
 }
 
 function renderHtml(fileName) {
-  const raw = fs.readFileSync(path.join(pub, fileName), 'utf8');
+  const orbit = path.join(root, 'orbit', fileName);
+  const fallback = path.join(pub, fileName);
+  const raw = fs.readFileSync(fs.existsSync(orbit) ? orbit : fallback, 'utf8');
   const portNote = state.httpPort && state.httpPort !== 80 ? ':' + state.httpPort : '';
   return raw
     .replaceAll('{{IP}}', escapeHtml(state.primaryIp || ''))
@@ -202,7 +204,7 @@ function resolveStaticTarget(pathname) {
 }
 
 function isTemplateRoute(pathname) {
-  return pathname === '/' || pathname === '/index.html' || pathname === '/panel';
+  return pathname === '/panel' || pathname === '/panel.html';
 }
 
 function serveFile(res, filePath, method) {
@@ -233,7 +235,8 @@ const server = http.createServer((req, res) => {
   const quiet = pathname === '/api/status'
     || pathname === '/health'
     || pathname === '/favicon.ico'
-    || pathname.startsWith('/assets/');
+    || pathname.startsWith('/assets/')
+    || pathname.startsWith('/orbit-assets/');
   if (!quiet) {
     state.httpHits += 1;
     if (playstation) state.psHits += 1;
@@ -273,17 +276,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (pathname === '/index.html') {
-    send(res, 200, req.method === 'HEAD' ? '' : renderHtml('index.html'), 'text/html; charset=utf-8');
-    return;
-  }
-
-  if (pathname === '/document/gb/ps5/index.html' || pathname === '/document/en/ps5/index.html') {
-    send(res, 200, req.method === 'HEAD' ? '' : renderHtml('index.html'), 'text/html; charset=utf-8');
-    return;
-  }
-
-  send(res, 200, req.method === 'HEAD' ? '' : renderHtml('index.html'), 'text/html; charset=utf-8');
+  send(res, 404, 'Yok', 'text/plain; charset=utf-8');
 });
 
 function readName(buf, offset) {

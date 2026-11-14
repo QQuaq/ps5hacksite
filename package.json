@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js --dev",
-    "pages": "node scripts/build-pages.js"
+    "sync": "node scripts/sync-poopsploit.js",
+    "pages": "node scripts/sync-poopsploit.js && node scripts/build-pages.js"
   }
 }

@@ -1,2 +1,3 @@
 node_modules/
+vendor/poopsploit/
 # docs/ GitHub Pages için commit edilir; yeniden üret: npm run pages

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0d0b">
+  <title>ORBIT panel</title>
+  <link rel="icon" href="orbit-assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="orbit-assets/panel.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="mark" href="/">ORBIT</a>
+      <p class="host" id="host-name">yerel ağ</p>
+      <a class="ghost" href="/">Poopsploit</a>
+    </header>
+
+    <section class="hero">
+      <div class="ip-block">
+        <p class="kicker">PS5’e yazacağın birincil DNS</p>
+        <h1 id="ip">{{IP}}</h1>
+        <div class="row">
+          <button type="button" id="copy" class="solid">Adresi kopyala</button>
+          <a class="ghost" id="open-site" href="{{ORIGIN}}">Siteyi aç</a>
+        </div>
+        <p class="fine" id="banner"></p>
+        <ul class="ips" id="ips"></ul>
+      </div>
+      <div class="setup">
+        <p class="kicker">PS5 adımları</p>
+        <p class="fine">Ek dosyalar için proje içindeki <code>public</code> klasörünü kullan; sunucu yolu otomatik açar.</p>
+        <ol>
+          <li>Ayarlar → Ağ → İnternet Bağlantısını Kur.</li>
+          <li>Bağlı ağı seç, Gelişmiş Ayarlar.</li>
+          <li>IP adresi ayarları: Otomatik.</li>
+          <li>DHCP ana bilgisayar adı: Ayarlama.</li>
+          <li>DNS ayarları: Manuel.</li>
+          <li>Birincil DNS: yukarıdaki adres. İkincil: <span id="upstream">{{UPSTREAM}}</span>.</li>
+          <li>MTU: Otomatik. Proxy sunucusu: Kullanma.</li>
+          <li>Bağlantı testinden sonra Kullanım Kılavuzu’nu aç veya tarayıcıya <span id="origin-text">{{ORIGIN}}</span> yaz.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="stats" id="stats" aria-label="Sayaçlar">
+      <article>
+        <p>HTTP</p>
+        <strong id="st-http">—</strong>
+      </article>
+      <article>
+        <p>DNS</p>
+        <strong id="st-dns">—</strong>
+      </article>
+      <article>
+        <p>PS5 isteği</p>
+        <strong id="st-ps">0</strong>
+      </article>
+      <article>
+        <p>Kılavuz adı</p>
+        <strong id="st-hijack">{{HIJACK}}</strong>
+      </article>
+    </section>
+
+    <section class="log">
+      <div class="log-head">
+        <h2>Konsol günlüğü</h2>
+        <p id="log-hint">PS5 bu ağa sorunca satır burada belirir.</p>
+      </div>
+      <div id="log-list" class="log-list">
+        <p class="empty">Henüz istek yok.</p>
+      </div>
+    </section>
+  </div>
+  <script src="orbit-assets/host-meta.js"></script>
+  <script src="orbit-assets/panel.js"></script>
+</body>
+</html>

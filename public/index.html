@@ -1,127 +1,73 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c0d0b">
-  <title>ORBIT</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/console.css">
+  <title>poopsploit</title>
+  <link rel="stylesheet" href="main.css?v=lowfw17">
+  <style>
+  /* ---- creds & greetz, lifted verbatim from the poop2jb landing ---- */
+/* Credits, in slopkit2's style: a muted label over a single wrapped line of names.
+   position:fixed so it pins to the bottom without joining the centred flex column
+   (body is height:100vh;overflow:hidden - an in-flow footer would push the buttons). */
+#credits{
+    position:fixed; bottom:14px; left:0; right:0;
+    text-align:center; padding:0 16px; pointer-events:none;
+}
+#credits span{ display:block; color:#6f7076; font-size:0.8rem; font-weight:700;
+               letter-spacing:.22em; margin-bottom:5px; }
+/* 26 names wrap to ~3 lines; cap the width so they break evenly rather than
+   spanning the full screen, and keep the whole block clear of the buttons. */
+#credits h3{ margin:0 auto; max-width:60rem; font-size:0.82rem; font-weight:700;
+             color:#4a4b50; line-height:1.55; }
+#basedon{ margin:9px 0 0; font-size:0.68rem; color:#3d3e43; letter-spacing:.05em;
+           font-weight:400; }
+  </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="top">
-      <a class="mark" href="#giris">ORBIT</a>
-      <p class="status"><span class="dot" aria-hidden="true"></span><span id="link-state">Bağlandı</span></p>
-      <p class="fw" id="fw">—</p>
-      <p class="clock" id="clock">--:--</p>
-    </header>
-
-    <nav class="nav" aria-label="Bölümler">
-      <a href="#giris">Ana</a>
-      <a href="#durum">Durum</a>
-      <a href="#ag">Ağ</a>
-      <a href="#rehber">Rehber</a>
-    </nav>
-
-    <main>
-      <section id="durum" class="view">
-        <p class="kicker">01 — Durum</p>
-        <h1>Yerel sunucu PS5’ten okunuyor.</h1>
-        <dl class="facts">
-          <div>
-            <dt>Konsol</dt>
-            <dd id="ua-short">—</dd>
-          </div>
-          <div>
-            <dt>Birincil DNS</dt>
-            <dd>{{IP}}</dd>
-          </div>
-          <div>
-            <dt>Site kökü</dt>
-            <dd>{{ORIGIN}}</dd>
-          </div>
-          <div>
-            <dt>HTTP portu</dt>
-            <dd>{{HTTP_PORT}}</dd>
-          </div>
-          <div>
-            <dt>Kılavuz adı</dt>
-            <dd>{{HIJACK}}</dd>
-          </div>
-        </dl>
-      </section>
-
-      <section id="ag" class="view">
-        <p class="kicker">02 — Ağ</p>
-        <h1>DNS bu bilgisayara işaret ediyor.</h1>
-        <dl class="facts">
-          <div>
-            <dt>Birincil DNS</dt>
-            <dd>{{IP}}</dd>
-          </div>
-          <div>
-            <dt>İkincil DNS</dt>
-            <dd>{{UPSTREAM}}</dd>
-          </div>
-          <div>
-            <dt>Tarayıcı adresi</dt>
-            <dd>{{ORIGIN}}</dd>
-          </div>
-          <div>
-            <dt>Yönlenen alan adı</dt>
-            <dd>{{HIJACK}}</dd>
-          </div>
-        </dl>
-        <p class="note">Sadece kılavuz adı bu makineye gelir. Diğer istekler {{UPSTREAM}} üzerinden çözülür; internet normal kalır.</p>
-      </section>
-
-      <section id="rehber" class="view">
-        <p class="kicker">03 — Rehber</p>
-        <h1>İlk kurulum.</h1>
-        <ol class="steps">
-          <li>Bilgisayarda <strong>start.bat</strong> dosyasını yönetici olarak çalıştır.</li>
-          <li>PS5: Ayarlar → Ağ → İnternet Bağlantısını Kur → Gelişmiş Ayarlar.</li>
-          <li>IP adresi: Otomatik. DHCP ana bilgisayar adı: Ayarlama.</li>
-          <li>DNS: Manuel. Birincil: {{IP}}. İkincil: {{UPSTREAM}}.</li>
-          <li>MTU: Otomatik. Proxy: Kullanma. Bağlantıyı test et.</li>
-          <li>Kullanım Kılavuzu’nu aç veya tarayıcıya <strong>{{ORIGIN}}</strong> yaz.</li>
-        </ol>
-        <p class="note">HTTPS kilidi yüzünden kılavuz bazen açılmaz. O zaman doğrudan {{ORIGIN}} adresini kullan.</p>
-      </section>
-
-      <section id="giris" class="view home">
-        <p class="kicker">PlayStation 5</p>
-        <h1>Yerel site ayakta.</h1>
-        <p class="lead">DNS köprüsü çalışıyor. Bu ekran konsoldan geliyorsa dosyalar bu bilgisayardan sunuluyor demektir.</p>
-        <p class="sub" id="ping">Sunucu kontrol ediliyor…</p>
-        <div class="cards">
-          <a class="card" href="#durum">
-            <span class="idx">01</span>
-            <span class="card-title">Durum</span>
-            <span class="card-copy">Konsol ve adres bilgisi</span>
-          </a>
-          <a class="card" href="#ag">
-            <span class="idx">02</span>
-            <span class="card-title">Ağ</span>
-            <span class="card-copy">DNS {{IP}}</span>
-          </a>
-          <a class="card" href="#rehber">
-            <span class="idx">03</span>
-            <span class="card-title">Rehber</span>
-            <span class="card-copy">Kurulum adımları</span>
-          </a>
-        </div>
-        <p class="host-note">Ek sayfa ve dosyalarını <code>public</code> klasörüne koy; sunucu otomatik servis eder.</p>
-      </section>
-    </main>
-
-    <footer class="foot">
-      <p class="mono">{{IP}}{{PORT_NOTE}}</p>
-      <a href="panel.html">Bilgisayar paneli</a>
-    </footer>
+  <div class="p-2">
+    <h1 class="text-center">poopsploit (7.00-12.00)</h1>
+    <p class="text-center" id="top-bar-text">Current Firmware: <span class="fw-bold" id="current-fw">Unknown</span></p>
   </div>
-  <script src="assets/host-meta.js"></script>
-  <script src="assets/console.js"></script>
+
+  <div id="main-content">
+    <div id="pre-jb-view" class="selected">
+      <a tabindex="0" class="btn fw-bold" id="run-jb"
+         href="poopsploit/poops.html?go=1&amp;auto=1&amp;production=1&amp;trigger=netcontrol&amp;attempts=8&amp;only=ps0_preflight,ps1_prepare,ps3_stage0,ps4_validate,ps5_stage1,ps6_stage2,ps8_stage3,ps9_stage4,ps10_stage5&amp;log=debug&amp;payload=1&amp;v=lowfw17">Jailbreak</a>
+      <a tabindex="0" class="btn btn-secondary" id="run-sender"
+         href="poopsploit/poops.html?go=1&amp;auto=1&amp;production=1&amp;trigger=netcontrol&amp;attempts=8&amp;only=ps0_preflight,ps1_prepare,ps3_stage0,ps4_validate,ps5_stage1,ps6_stage2,ps8_stage3,ps9_stage4,ps10_stage5&amp;log=debug&amp;payload=1&amp;reuse=1&amp;v=lowfw17">Payloads (sender)</a>
+    </div>
+  </div>
+
+<!-- CREDS & GREETZ. Styled after zecoxao's site (his hen/hen2/hen3/idlesauce pages all
+     carry the same "creds & greetz" block), but the NAMES are the operator's own list,
+     not a copy of his - his local mirror had 8 of 12 slots stripped and those were never
+     guessed. zecoxao leads. One name was dropped at the operator's request. The list is
+     de-duplicated: zecoxao and idlesauce each appeared twice across the old block and the
+     added list, and are kept once, in their first position.
+     j0rdy is deliberately NOT a greet - he gets the attribution line underneath, which is
+     credit rather than a greeting. -->
+<div id="credits">
+    <span>creds &amp; greetz</span>
+    <h3>
+        zecoxao, ChendoChap, abc/psfree, idlesauce, flat_z, TheFlow,
+        c0w-ar, earthonion, SIStro, egycnq, abkarino, gezine, Dr.Yenyen,
+        StonedModder, VoidWhisper, EchoStretch, BestPig, AlAzif, drakmor,
+        hzhreal, hammer-83, ntfargo, shahrilnet, Znullptr,
+        LM, ItsJokerZz,
+        cblock, BeLegal, Lord Caio Barros
+    </h3>
+    <p id="basedon">based on the slopkit by j0rdy</p>
+</div>
+
+  <script>
+    try {
+      var firmwareMatch = /PlayStation 5\/(\d+\.\d+)/.exec(navigator.userAgent);
+      var firmware = firmwareMatch ? firmwareMatch[1] : "";
+      document.getElementById("current-fw").textContent = firmware || "Not detected";
+    } catch (e) { }
+    try { document.getElementById("run-jb").focus(); } catch (e) { }
+  </script>
+
 </body>
 </html>

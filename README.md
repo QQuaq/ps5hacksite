@@ -1,26 +1,30 @@
-# ORBIT — PS5 yerel site
+# ORBIT host + poopsploit dosyaları
 
-**Canlı site (GitHub Pages):** https://qquaq.github.io/ps5hacksite/  
-**Panel:** https://qquaq.github.io/ps5hacksite/panel.html
+Site içeriği [soniciso1/poopsploit](https://github.com/soniciso1/poopsploit) üzerinden `npm run sync` ile `public/` klasörüne kopyalanır.
+
+**Yerel panel:** http://127.0.0.1/panel (DNS/IP ve günlük)
 
 ## PS5’te kullanım
 
-### A) Sadece tarayıcı (github.io)
+### DNS + Kullanım Kılavuzu (önerilen)
 
-PS5 internet tarayıcısına canlı adresi yaz — ücretsiz, bilgisayar kapalıyken de açılır.
+1. `npm run sync` (ilk sefer ve poopsploit güncellenince)
+2. `start.bat` → **yönetici**
+3. Panelden IP’yi PS5 **birincil DNS** yap
+4. Kullanım Kılavuzu veya tarayıcıda `http://IP/`
 
-### B) DNS ile kılavuz yolu (yerel sunucu)
+### Sadece tarayıcı
 
-1. `start.bat` dosyasını **yönetici** olarak çalıştır.
-2. Paneldeki IP’yi PS5 **birincil DNS** yap.
-3. Kullanım Kılavuzu’nu aç veya `http://IP/` adresine git.
+`http://BILGISAYAR-IP/` adresine doğrudan git (DNS şart değil).
 
 ## Geliştirme
 
 ```bash
-npm run dev      # önizleme :8080
-npm start        # PS5 için :80 + DNS :53 (yönetici)
-npm run pages    # docs/ üret → GitHub Pages
+git clone https://github.com/soniciso1/poopsploit.git vendor/poopsploit   # ilk sefer
+npm run sync      # vendor -> public
+npm run dev       # :8080 önizleme
+npm start         # :80 + DNS :53 (yönetici)
+npm run pages     # GitHub Pages docs/ (isteğe bağlı)
 ```
 
 ## Güncelleme (GitHub)

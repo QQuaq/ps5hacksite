@@ -49,7 +49,7 @@ function bakeHtml(filePath) {
 
 rm(out);
 copyDir(src, out);
-['index.html', 'panel.html', '404.html'].forEach((name) => {
+['panel.html', '404.html'].forEach((name) => {
   const filePath = path.join(out, name);
   if (fs.existsSync(filePath)) bakeHtml(filePath);
 });
